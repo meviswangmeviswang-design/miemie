@@ -1,10 +1,10 @@
 {
-  "projectId": "gen-lang-client-0108888567",
-  "appId": "1:874680904820:web:5d50d51b08945a71477521",
-  "apiKey": "AIzaSyCl8WZLm5oGgAZX1Q0fax7fHMMNZFM8MKs",
-  "authDomain": "gen-lang-client-0108888567.firebaseapp.com",
-  "firestoreDatabaseId": "ai-studio-e79987f8-b0fe-4c12-8fc6-17bdfcbce5af",
-  "storageBucket": "gen-lang-client-0108888567.firebasestorage.app",
-  "messagingSenderId": "874680904820",
-  "measurementId": ""
+  "projectId": "miemie-f5bc2",
+  "appId": "1:721825170217:web:f46f1720333a0fa2056d38",
+  "apiKey": "AIzaSyBfUwn0jZj5k_HHwxNH5QZgJMy2-fBnbDI",
+  "authDomain": "miemie-f5bc2.firebaseapp.com",
+  "firestoreDatabaseId": "(default)",
+  "storageBucket": "miemie-f5bc2.firebasestorage.app",
+  "messagingSenderId": "721825170217",
+  "measurementId": "G-DXCCXNEWKM"
 }

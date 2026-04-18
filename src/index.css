@@ -1,1 +1,26 @@
 @import "tailwindcss";
+
+@theme {
+  --color-powder-100: #e0f4f8;
+  --color-powder-200: #d4f1f9;
+  --color-powder-300: #b0e0e6; /* 主色調 Powder Blue */
+  --color-powder-400: #88c8d2;
+  --color-powder-500: #6caab4;
+  --color-powder-600: #558d97;
+  
+  --font-sans: "Inter", "Noto Sans TC", ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  background-color: #f8fbfd;
+  color: #334155;
+  font-family: var(--font-sans);
+}
+
+/* 讓按鈕和卡片帶有柔和的圓角與過渡動畫 */
+* {
+  transition-property: background-color, border-color, box-shadow;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+
