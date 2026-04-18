@@ -1,0 +1,36 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    // 驗證是否為 Google 登入帳戶
+    function isGoogleUser() {
+      return request.auth != null && 
+             request.auth.token.firebase.sign_in_provider == 'google.com';
+    }
+
+    // 管理員判定邏輯
+    function isAdmin() {
+      return isGoogleUser() && 
+             request.auth.token.email_verified == true && 
+             request.auth.token.email == 'meviswangmeviswang@gmail.com';
+    }
+
+    match /commissions/{imageId} {
+      // 強制要求買家必須使用 Google 登入才能上傳圖片（防範匿名濫用與惡意攻擊）
+      allow create: if isGoogleUser() 
+                    && request.resource.size <= 2 * 1024 * 1024
+                    && request.resource.contentType.matches('image/.*');
+                    
+      // 只有管理員可以讀取和刪除圖片（保護買家的委託參考圖）
+      allow get: if isAdmin();
+      allow list: if isAdmin();
+      allow update, delete: if isAdmin();
+    }
+    
+    // 預設拒絕其他任何存取
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "entities": {
+    "Settings": {
+      "title": "Site Settings",
+      "description": "Global configuration",
+      "type": "object",
+      "properties": {
+        "isCommissionsOpen": { "type": "boolean" },
+        "updatedAt": { "type": "number" }
+      },
+      "required": ["isCommissionsOpen", "updatedAt"]
+    },
+    "OrderPublic": {
+      "title": "Public Order Progress",
+      "description": "Order progress document accessible via point reads",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "orderType": { "type": "string" },
+        "status": { "type": "number" },
+        "createdAt": { "type": "number" },
+        "updatedAt": { "type": "number" },
+        "officialOrderId": { "type": "string" }
+      },
+      "required": ["title", "orderType", "status", "createdAt", "updatedAt"]
+    },
+    "OrderPrivate": {
+      "title": "Private Order Details",
+      "description": "Admin-only sensitive data",
+      "type": "object",
+      "properties": {
+        "nickname": { "type": "string" },
+        "contact": { "type": "string" },
+        "details": { "type": "string" },
+        "referenceImageUrl": { "type": "string" }
+      },
+      "required": ["nickname", "contact", "details", "referenceImageUrl"]
+    },
+    "OrderAlias": {
+      "title": "Order Alias",
+      "description": "Maps officialOrderId to trackingId",
+      "type": "object",
+      "properties": {
+        "trackingId": { "type": "string" }
+      },
+      "required": ["trackingId"]
+    }
+  },
+  "firestore": {
+    "/settings/{settingId}": {
+      "schema": { "$ref": "Settings" },
+      "description": "Global settings document (id: global)"
+    },
+    "/orders/{orderId}": {
+      "schema": { "$ref": "OrderPublic" },
+      "description": "Public order state (id: trackingId)"
+    },
+    "/orders/{orderId}/private/{privateId}": {
+      "schema": { "$ref": "OrderPrivate" },
+      "description": "Private order data (id: data)"
+    },
+    "/order_aliases/{aliasId}": {
+      "schema": { "$ref": "OrderAlias" },
+      "description": "Alias lookup (id: officialOrderId)"
+    }
+  }
+}
